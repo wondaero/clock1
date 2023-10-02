@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>clock1</title>
+
+        <link rel="stylesheet" href="https://wondaero.github.io/assets/css/normalize.css" />
+    </head>
+    <style>
+        html, body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock1{
+            width: 250px;
+            height: 250px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+            border: 5px solid gold;
+            overflow: hidden;
+        }
+        .clock1-cover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(midnightblue, black);
+            opacity: .9;
+            transition: opacity 2s;
+            clip-path: polygon(evenodd, 0px 0px, 250px 0px, 250px 152px, 250px 250px, 0px 250px, 0px 150px, 230px 150px, 230px 100px, 200px 100px, 200px 150px, 194px 150px, 194px 100px, 164px 100px, 164px 150px, 158px 150px, 158px 100px, 128px 100px, 128px 150px, 122px 150px, 122px 100px, 92px 100px, 92px 150px, 86px 150px, 86px 100px, 56px 100px, 56px 150px, 50px 150px, 50px 100px, 20px 100px, 20px 150px, 0px 150px);
+        }
+        .clock1-cover:hover{
+            opacity: 0;
+        }
+            
+        
+        .back-board{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+        }
+        .back-board ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            font-size: 40px;
+            background: rgba(255, 255, 255, .5);
+            transition: transform .5s;
+            /* box-shadow: 0 0 5px #000; */
+        }
+        .back-board ul.h1{
+            left: -35px;
+            top: 84px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .back-board ul.h1 li{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+        .back-board ul.h1 li:nth-of-type(1){transform: rotate(0);}
+        .back-board ul.h1 li:nth-of-type(2){transform: rotate(120deg);}
+        .back-board ul.h1 li:nth-of-type(3){transform: rotate(240deg);}
+        .back-board ul.h2{
+            left: 50px;
+            top: 25px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .back-board ul.h2 li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+        .back-board ul.h2 li:nth-of-type(1){transform: rotate(0);}
+        .back-board ul.h2 li:nth-of-type(2){transform: rotate(36deg);}
+        .back-board ul.h2 li:nth-of-type(3){transform: rotate(72deg);}
+        .back-board ul.h2 li:nth-of-type(4){transform: rotate(108deg);}
+        .back-board ul.h2 li:nth-of-type(5){transform: rotate(144deg);}
+        .back-board ul.h2 li:nth-of-type(6){transform: rotate(180deg);}
+        .back-board ul.h2 li:nth-of-type(7){transform: rotate(216deg);}
+        .back-board ul.h2 li:nth-of-type(8){transform: rotate(252deg);}
+        .back-board ul.h2 li:nth-of-type(9){transform: rotate(288deg);}
+        .back-board ul.h2 li:nth-of-type(10){transform: rotate(324deg);}
+
+        .back-board ul.m1{
+            left: 92px;
+            top: 100px;
+            width: 180px;
+            height: 300px;
+            overflow: hidden;
+            background: 0;
+        }
+        .back-board ul.m1 li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* right: 0;
+            bottom: 0; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 50px;
+            background: #fff;
+        }
+        .back-board ul.m1 li:nth-of-type(1){transform: translate(0, 0);}
+        .back-board ul.m1 li:nth-of-type(2){transform: translate(30px, 50px);}
+        .back-board ul.m1 li:nth-of-type(3){transform: translate(60px, 100px);}
+        .back-board ul.m1 li:nth-of-type(4){transform: translate(90px, 150px);}
+        .back-board ul.m1 li:nth-of-type(5){transform: translate(120px, 200px);}
+        .back-board ul.m1 li:nth-of-type(6){transform: translate(150px, 250px);}
+
+        .back-board ul.m2{
+            left: -336px;
+            top: -125px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .back-board ul.m2 li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+        .back-board ul.m2 li:nth-of-type(1){transform: rotate(0);}
+        .back-board ul.m2 li:nth-of-type(2){transform: rotate(36deg);}
+        .back-board ul.m2 li:nth-of-type(3){transform: rotate(72deg);}
+        .back-board ul.m2 li:nth-of-type(4){transform: rotate(108deg);}
+        .back-board ul.m2 li:nth-of-type(5){transform: rotate(144deg);}
+        .back-board ul.m2 li:nth-of-type(6){transform: rotate(180deg);}
+        .back-board ul.m2 li:nth-of-type(7){transform: rotate(216deg);}
+        .back-board ul.m2 li:nth-of-type(8){transform: rotate(252deg);}
+        .back-board ul.m2 li:nth-of-type(9){transform: rotate(288deg);}
+        .back-board ul.m2 li:nth-of-type(10){transform: rotate(324deg);}
+        .back-board ul.s1{
+            left: 158px;
+            top: 35px;
+            width: 180px;
+            height: 180px;
+            overflow: hidden;
+            /* background: 0; */
+            border-radius: 50%;
+        }
+        .back-board ul.s1 li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+        .back-board ul.s1 li:nth-of-type(1){transform: rotate(0);}
+        .back-board ul.s1 li:nth-of-type(2){transform: rotate(60deg);}
+        .back-board ul.s1 li:nth-of-type(3){transform: rotate(120deg);}
+        .back-board ul.s1 li:nth-of-type(4){transform: rotate(180deg);}
+        .back-board ul.s1 li:nth-of-type(5){transform: rotate(240deg);}
+        .back-board ul.s1 li:nth-of-type(6){transform: rotate(300deg);}
+
+        .back-board ul.s2{
+            right: 20px;
+            top: 100px;
+            width: 30px;
+            background: #fff;
+        }
+        .back-board ul.s2 li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 50px;
+        }
+    </style>
+
+    <body>
+        <div class="clock1">
+            <div class="back-board">
+
+                <ul id="h1" class="h1">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                </ul>
+                <ul id="h2" class="h2">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+                <ul id="m1" class="m1">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+                <ul id="m2" class="m2">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+                <ul id="s1" class="s1">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+                <ul id="s2" class="s2">
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+            </div>
+            <div class="clock1-cover"></div>
+        </div>
+        
+        <script>
+            const qs = trg => document.querySelector(trg);
+            const qsa = trgs => document.querySelectorAll(trgs);
+
+
+            let d = new Date();
+            let raf;
+
+            const getTime = () => {
+                d = new Date();
+
+                const dH = d.getHours();
+                const dM = d.getMinutes();
+                const dS = d.getSeconds();
+
+                const dH1 = dH > 9 ? +String(dH)[0] : 0;
+                const dH2 = +String(dH).substr(-1);
+                const dM1 = dM > 9 ? +String(dM)[0] : 0;
+                const dM2 = +String(dM).substr(-1);
+                const dS1 = dS > 9 ? +String(dS)[0] : 0;
+                const dS2 = +String(dS).substr(-1);
+
+                h1.style.transform = `rotate(${((3 - dH1) * 120)}deg)`;
+                h2.style.transform = `rotate(${((10 - dH2) * 36)}deg)`;
+                m1.style.transform = `translate(${-30 * dM1}px, ${-50 * dM1}px)`;
+                m2.style.transform = `rotate(${((10 - dM2) * 36)}deg)`;
+                s1.style.transform = `rotate(${((6 - dS1) * 60)}deg)`;
+                s2.style.transform = `translateY(${-50 * dS2}px)`;
+
+                raf = window.requestAnimationFrame(getTime);
+            }
+
+            getTime();
+        </script>
+    </body>
+</html>
